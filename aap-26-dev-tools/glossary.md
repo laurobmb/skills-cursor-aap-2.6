@@ -25,3 +25,18 @@
 **Multi-task recommendation** — Sugestão de código para múltiplas tasks de uma vez baseada em um prompt descritivo.
 
 **FQCN (Fully Qualified Collection Name)** — Formato completo de referência a módulos Ansible: `namespace.collection.module` (ex: `ansible.builtin.template`). Recomendado para evitar ambiguidade.
+
+**Automation Intelligent Assistant** — Interface de chat de IA embutida na UI do AAP que responde perguntas sobre o ambiente (jobs, inventories, templates) em linguagem natural usando LLMs. Componente do Lightspeed distinto do Coding Assistant.
+
+**MCP (Model Context Protocol)** — Protocolo aberto que padroniza como aplicações fornecem contexto em tempo real a LLMs. No AAP, permite que o chatbot inteligente busque dados reais do Controller e Gateway.
+
+**ansible-mcp-lightspeed** — Container MCP que expõe dados do Platform Gateway ao chatbot. Ativado ao configurar `aap_gateway_url` no chatbot-configuration-secret.
+
+**ansible-mcp-controller** — Container MCP que expõe dados do Automation Controller (Job Templates, jobs, inventories) ao chatbot. Ativado ao configurar `aap_controller_url`.
+
+**chatbot-configuration-secret** — Secret Kubernetes no namespace `aap` que contém as configurações do chatbot: modelo LLM, URL de inferência, token e variáveis MCP opcionais.
+
+**vLLM** — Framework de serving de LLMs de alta performance suportado pelo RHEL AI, OpenShift AI e Red Hat AI Inference Server. Requerido para self-hosting de LLMs com o Intelligent Assistant.
+
+**Tool calling** — Capacidade que um LLM precisa ter habilitada para interagir com serviços externos via MCP. Sem tool calling, o MCP server não funciona com o chatbot.
+

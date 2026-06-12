@@ -63,6 +63,41 @@ Trial 90 dias = apenas subscription AAP (sem IBM watsonx obrigatório)
 → Após trial: configurar cloud service ou on-premise para continuar
 ```
 
+## Intelligent Assistant (Chatbot AAP) — Deploy rápido no OCP
+
+```yaml
+# 1. Criar secret (namespace aap)
+apiVersion: v1
+kind: Secret
+metadata:
+  name: chatbot-configuration-secret
+  namespace: aap
+stringData:
+  chatbot_llm_provider_type: openai    # rhelai_vllm | rhoai_vllm | openai | azure_openai
+  chatbot_url: https://api.openai.com/v1
+  chatbot_model: gpt-4o-mini
+  chatbot_token: <api_key>
+  # Opcional: habilitar MCP (dados em tempo real do AAP)
+  aap_gateway_url: http://myaap
+  aap_controller_url: http://myaap-controller-service
+```
+
+```yaml
+# 2. Referenciar no Operator AAP (spec.lightspeed)
+spec:
+  lightspeed:
+    disabled: false
+    chatbot_config_secret_name: chatbot-configuration-secret
+```
+
+```bash
+# 3. Verificar pods e MCP containers
+oc get pods -n aap | grep lightspeed
+oc describe pod myaap-lightspeed-chatbot-api-* -n aap | grep -A5 "Containers:"
+# ansible-mcp-lightspeed  → MCP Gateway ativo
+# ansible-mcp-controller  → MCP Controller ativo
+```
+
 ## Navigator — TUI atalhos
 
 | Tecla | Ação |
