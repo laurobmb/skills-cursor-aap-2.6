@@ -1,6 +1,6 @@
-# Cursor Skills — Red Hat Ansible Automation Platform 2.6
+# Cursor Skills — Red Hat Ansible Automation Platform
 
-Skills para o [Cursor IDE](https://cursor.sh) com conteúdo extraído da documentação oficial do **Red Hat Ansible Automation Platform 2.6**, organizados para consulta direta durante desenvolvimento, implantação e consultoria.
+Skills para o [Cursor IDE](https://cursor.sh) com conteúdo extraído da documentação oficial do **Red Hat Ansible Automation Platform**, organizados para consulta direta durante desenvolvimento, implantação e consultoria.
 
 ---
 
@@ -10,206 +10,134 @@ Skills são arquivos `SKILL.md` que ensinam o agente de IA do Cursor a responder
 
 ---
 
-## Skills disponíveis (branch `v2.6`)
+## Skills disponíveis — AAP 2.7 (branch `v2.7`)
+
+> **AAP 2.7 — 16 PDFs oficiais → 6 skills**
 
 | Skill | Conteúdo | Fonte |
 |---|---|---|
-| `aap-26-instalacao` | Arquitetura, topologias, instalação containerizada e Operator/OpenShift, rede e portas, PostgreSQL | ~6 guias |
-| `aap-26-automacoes` | EDA Rulebooks, Decision Environments, Configuration as Code, Execution Environments, desenvolvimento | ~5 guias |
-| `aap-26-operacao` | Gestão de acesso, autenticação (15 métodos), hardening/STIG, troubleshooting, logs | ~4 guias |
-| `aap-26-mesh-performance` | Automation Mesh (nós hybrid/control/execution/hop), topologias, OCP Mesh, performance tuning, upgrade | ~5 guias |
-| `aap-26-integracoes` | Terraform + Vault (HashiCorp), Private Automation Hub (coleções e EEs), awx-manage, backup/restore OCP | ~5 guias |
-| `aap-26-controller-uso` | Job Templates, Workflows + Visualizer, Inventories dinâmicos (VMware/Satellite/AWS/Azure), Instance Groups, API REST e webhooks | ~2 guias |
-| `aap-26-analytics-migracao` | Migração entre deployment types (RPM→Container, RPM→OCP), Automation Calculator (ROI), Savings Planner, Job Explorer | ~2 guias |
-| `aap-26-dashboard` | Automation Dashboard (app local para métricas de até 3 instâncias AAP), clusters.yaml, token rotation, ROI, troubleshooting | 1 guia |
-| `aap-26-dev-tools` | ansible-navigator (TUI/stdout, EEs, coleções, artifacts), Ansible Lightspeed Coding Assistant (VS Code, trial, on-premise), Automation Intelligent Assistant com MCP server (chatbot na UI do AAP — GA no OCP, Tech Preview no containerizado) | 3 guias + docs oficiais |
-| `aap-26-self-service` | Self-Service Automation Portal (Helm/OCP, sincronização de templates, custom templates, RBAC, troubleshooting SSL) | 3 guias |
-| `aap-26-developer-hub` | Ansible Plug-ins para Red Hat Developer Hub (Learn→Operate, Dev Spaces, software templates, instalação Helm/Operator) | 2 guias |
+| `aap-27-instalacao` | Topologias (Container/Operator, Growth/Enterprise), inventory file completo, Redis HA, PostgreSQL externo, portas e rede | plan + install |
+| `aap-27-seguranca` | Autenticação centralizada (LDAP, SAML, OIDC, 14 providers), authenticator maps, RBAC (orgs/times/roles), credentials + external secrets, PATs via Gateway | secure + administer |
+| `aap-27-desenvolvimento` | ansible-dev-tools, EEs com MCP server (GitHub/AWS), EDA rulebooks, CaC ansible.platform, coleções e Private Hub | develop + get-started |
+| `aap-27-extensao` | **Ansible MCP Server standalone** (novo 2.7, porta 8448), Intelligent Assistant + BYOK (RAG customizado), Lightspeed Coding, Terraform/Vault | extend + integrate |
+| `aap-27-operacao` | Performance tuning (capacity algorithm, forks, EDA scaling), OCP pod resources, metrics-utility, Automation Dashboard, troubleshooting | optimize + observe + troubleshoot |
+| `aap-27-upgrade` | **Breaking changes 2.7** (RPM removido, auth direta removida), checklist pré-upgrade, detecção de acesso direto, upgrade containerizado/OCP, migração auth/CaC/APIs | upgrade + migrate + reference + whats-new |
 
-> Total: **~38 guias oficiais Red Hat** destilados em ~900 páginas de conteúdo estruturado.
+**Breaking changes obrigatórios documentados no 2.7:**
+- Instalador RPM **removido** — apenas Container (RHEL+Podman) e Operator (OCP)
+- Autenticação direta a controller/hub/EDA **removida** — tudo via Platform Gateway
+- Tokens de componente (controller PATs) **removidos** — recriar no Gateway
+- LDAP/SAML do Controller **removidos** — reconfigurar no Gateway
 
 ---
 
-## Sobre o MCP no AAP 2.6
+## Skills disponíveis — AAP 2.6 (branch `v2.6`)
 
-O AAP 2.6 inclui o **Automation Intelligent Assistant** — um chatbot de IA embutido diretamente na interface do AAP (canto superior direito). Ele usa LLMs para responder perguntas sobre o ambiente em linguagem natural e se integra ao **MCP server** para buscar dados reais em tempo real:
-
-| MCP Container | Ativa com | Expõe |
-|---|---|---|
-| `ansible-mcp-lightspeed` | `aap_gateway_url` | Dados do Platform Gateway (usuários, orgs, tokens) |
-| `ansible-mcp-controller` | `aap_gateway_url` + `aap_controller_url` | Job Templates, jobs, inventories, credentials do Controller |
-
-**Modelos LLM suportados:** RHEL AI (vLLM), OpenShift AI (vLLM), Red Hat AI Inference Server, OpenAI, Azure OpenAI.
-
-**Status no AAP 2.6:** Integração MCP **Generally Available** no OCP (Operator) · **Technology Preview** no deployment containerizado (RHEL).
-
-> Para detalhes completos de deploy, exemplos de secrets e variáveis de inventário, consulte a skill `aap-26-dev-tools`, capítulo `ch05-intelligent-assistant`.
+| Skill | Conteúdo |
+|---|---|
+| `aap-26-instalacao` | Arquitetura, topologias, instalação containerizada e Operator/OpenShift, rede e portas, PostgreSQL |
+| `aap-26-automacoes` | EDA Rulebooks, Decision Environments, Configuration as Code, Execution Environments, desenvolvimento |
+| `aap-26-operacao` | Gestão de acesso, autenticação (15 métodos), hardening/STIG, troubleshooting, logs |
+| `aap-26-mesh-performance` | Automation Mesh (nós hybrid/control/execution/hop), topologias, OCP Mesh, performance tuning, upgrade |
+| `aap-26-integracoes` | Terraform + Vault (HashiCorp), Private Automation Hub (coleções e EEs), awx-manage, backup/restore OCP |
+| `aap-26-controller-uso` | Job Templates, Workflows + Visualizer, Inventories dinâmicos (VMware/Satellite/AWS/Azure), Instance Groups, API REST e webhooks |
+| `aap-26-analytics-migracao` | Migração entre deployment types, Automation Calculator (ROI), Savings Planner, Job Explorer |
+| `aap-26-dashboard` | Automation Dashboard (app local para métricas de até 3 instâncias AAP) |
+| `aap-26-dev-tools` | ansible-navigator, Ansible Lightspeed Coding Assistant, Automation Intelligent Assistant com MCP |
+| `aap-26-self-service` | Self-Service Automation Portal (Helm/OCP, RBAC, troubleshooting) |
+| `aap-26-developer-hub` | Ansible Plug-ins para Red Hat Developer Hub |
 
 ---
 
 ## Instalação
 
-### Instalar todos os skills de uma vez
+### Opção 1: Clone direto no ~/.cursor/skills/
 
 ```bash
-git clone -b v2.6 git@github.com:laurobmb/skills-cursor-aap-2.6.git /tmp/aap-skills
+# AAP 2.7
+git clone -b v2.7 git@github.com:laurobmb/skills-cursor-aap-2.6.git /tmp/aap27-skills
+cp -r /tmp/aap27-skills/aap-27-* ~/.cursor/skills/
 
-cp -r /tmp/aap-skills/aap-26-instalacao         ~/.cursor/skills/
-cp -r /tmp/aap-skills/aap-26-automacoes         ~/.cursor/skills/
-cp -r /tmp/aap-skills/aap-26-operacao           ~/.cursor/skills/
-cp -r /tmp/aap-skills/aap-26-mesh-performance   ~/.cursor/skills/
-cp -r /tmp/aap-skills/aap-26-integracoes        ~/.cursor/skills/
-cp -r /tmp/aap-skills/aap-26-controller-uso     ~/.cursor/skills/
-cp -r /tmp/aap-skills/aap-26-analytics-migracao ~/.cursor/skills/
-cp -r /tmp/aap-skills/aap-26-dashboard          ~/.cursor/skills/
-cp -r /tmp/aap-skills/aap-26-dev-tools          ~/.cursor/skills/
-cp -r /tmp/aap-skills/aap-26-self-service       ~/.cursor/skills/
-cp -r /tmp/aap-skills/aap-26-developer-hub      ~/.cursor/skills/
+# AAP 2.6
+git clone -b v2.6 git@github.com:laurobmb/skills-cursor-aap-2.6.git /tmp/aap26-skills
+cp -r /tmp/aap26-skills/aap-26-* ~/.cursor/skills/
 ```
 
-### Instalar um skill específico (sparse checkout)
+### Opção 2: Usar as skills direto do workspace
 
-```bash
-git clone -b v2.6 --filter=blob:none --sparse \
-  git@github.com:laurobmb/skills-cursor-aap-2.6.git /tmp/aap-skills
-cd /tmp/aap-skills
-git sparse-checkout set aap-26-controller-uso
-cp -r aap-26-controller-uso ~/.cursor/skills/
 ```
-
-### Manter atualizado
-
-```bash
-cd /tmp/aap-skills
-git pull origin v2.6
-cp -r aap-26-* ~/.cursor/skills/
+Adicione os diretórios das skills ao seu workspace Cursor.
+Exemplo: ~/.cursor/skills/aap-27-instalacao/SKILL.md
 ```
 
 ---
 
 ## Como usar no Cursor
 
-Após instalar, abra o Cursor e use o agente normalmente. Os skills são carregados automaticamente quando o contexto é relevante, ou podem ser invocados explicitamente:
+Após copiar as skills para `~/.cursor/skills/`, elas ficam disponíveis automaticamente no Cursor IDE.
+
+**Exemplos de uso:**
 
 ```
-# Instalação e arquitetura
-Usando aap-26-instalacao, quais são os requisitos mínimos de IOPS para o PostgreSQL?
-Usando aap-26-instalacao, quais portas preciso liberar no firewall para o Automation Mesh?
+"Qual topologia usar para produção AAP 2.7 com alta disponibilidade?"
+→ usa aap-27-instalacao
 
-# Automações
-Usando aap-26-automacoes, como configurar um Rulebook para receber webhook do GLPI?
-Usando aap-26-automacoes, como construir um EE customizado com coleções internas?
+"Como configuro LDAP no AAP 2.7 com authenticator maps para organizações?"
+→ usa aap-27-seguranca
 
-# Operação e segurança
-Usando aap-26-operacao, como configurar LDAP no Platform Gateway?
-Usando aap-26-operacao, quais variáveis de inventory habilitam FIPS?
+"Como faço upgrade do AAP 2.6 para 2.7? Quais breaking changes?"
+→ usa aap-27-upgrade
 
-# Mesh e performance
-Usando aap-26-mesh-performance, como configurar um hop node para DMZ outbound-only?
-Usando aap-26-mesh-performance, quais tipos de job afetam o scaling horizontal?
+"Como conecto o Cursor ao AAP via MCP server?"
+→ usa aap-27-extensao
 
-# Integrações
-Usando aap-26-integracoes, como configurar o HashiCorp Vault como External Secret Provider?
-Usando aap-26-integracoes, como sincronizar coleções do console.redhat.com para o Hub privado?
+"Quais forks o meu nó de 16GB RAM suporta?"
+→ usa aap-27-operacao
 
-# Uso do Controller
-Usando aap-26-controller-uso, como criar um workflow com aprovação humana antes do deploy?
-Usando aap-26-controller-uso, como disparar um Job Template via API com extra_vars?
-Usando aap-26-controller-uso, como configurar inventory dinâmico do VMware vCenter?
-
-# Migração e analytics
-Usando aap-26-analytics-migracao, qual o passo a passo para migrar de RPM para containerizado?
-Usando aap-26-analytics-migracao, como calcular e apresentar o ROI da automação para um cliente?
-
-# Dashboard local
-Usando aap-26-dashboard, como conectar o Automation Dashboard a duas instâncias AAP?
-Usando aap-26-dashboard, como resolver erro 401 na sincronização do dashboard?
-
-# Ferramentas de desenvolvimento e IA
-Usando aap-26-dev-tools, como configurar o ansible-navigator para usar um EE corporativo?
-Usando aap-26-dev-tools, como ativar o Ansible Lightspeed no VS Code?
-Usando aap-26-dev-tools, como implantar o chatbot inteligente no AAP com MCP server?
-Usando aap-26-dev-tools, como configurar o chatbot-configuration-secret para OpenAI?
-
-# Self-service portal
-Usando aap-26-self-service, como instalar o Self-Service Portal no OpenShift via Helm?
-Usando aap-26-self-service, como filtrar apenas templates com label específica na sincronização?
-
-# Developer Hub
-Usando aap-26-developer-hub, como instalar os Ansible Plug-ins no RHDH existente?
-Usando aap-26-developer-hub, qual a diferença entre o Self-Service Portal e os Ansible Plug-ins?
+"Como criar um EE com MCP server do GitHub?"
+→ usa aap-27-desenvolvimento
 ```
 
 ---
 
-## Estrutura de cada skill
+## Sobre o Ansible MCP Server no AAP 2.7
 
-```
-aap-26-<nome>/
-├── SKILL.md              # Core: descrição, modelos mentais, índice de capítulos
-├── chapters/             # Capítulos carregados sob demanda
-│   ├── ch01-*.md
-│   ├── ch02-*.md
-│   └── ...
-├── glossary.md           # Termos técnicos com definições precisas
-├── patterns.md           # Padrões de decisão arquitetural com exemplos reais
-└── cheatsheet.md         # Tabelas rápidas: portas, versões, variáveis, comandos
-```
+O AAP 2.7 introduz o **Ansible MCP Server** como componente standalone (Tech Preview) — diferente do MCP do chatbot do 2.6:
+
+| | AAP 2.6 (Intelligent Assistant) | AAP 2.7 (MCP Server standalone) |
+|---|---|---|
+| Tipo | Chatbot interno na UI do AAP | Servidor MCP externo (porta 8448) |
+| Consumidor | Usuários do AAP | AI agents: Cursor, Claude, ChatGPT |
+| Requer LLM | Sim | Não |
+| Status | GA (OCP) / TP (Container) | Tech Preview |
 
 ---
 
-## Origem do conteúdo
+## Mapa de PDFs → Skills (AAP 2.7)
 
-Gerado a partir da documentação oficial Red Hat AAP 2.6, com extração técnica usando [docling](https://github.com/DS4SD/docling) para preservar tabelas e blocos de código dos PDFs originais.
-
-| Guia | Skill |
+| PDF Oficial | Skill |
 |---|---|
-| Planning your installation | aap-26-instalacao |
-| Containerized installation | aap-26-instalacao |
-| Installing on OpenShift Container Platform | aap-26-instalacao |
-| Tested deployment models | aap-26-instalacao |
-| Using automation decisions (EDA) | aap-26-automacoes |
-| Configuration as Code | aap-26-automacoes |
-| Creating and using Execution Environments | aap-26-automacoes |
-| Developing automation content | aap-26-automacoes |
-| Access management and authentication | aap-26-operacao |
-| Hardening and compliance | aap-26-operacao |
-| Troubleshooting Ansible Automation Platform | aap-26-operacao |
-| Automation Mesh for VM-based installations | aap-26-mesh-performance |
-| Automation Mesh for Operator-based installations | aap-26-mesh-performance |
-| Performance considerations | aap-26-mesh-performance |
-| Upgrading / Migrating to AAP 2.6 (RPM) | aap-26-mesh-performance |
-| Getting started with Hashicorp (Terraform + Vault) | aap-26-integracoes |
-| Managing automation hub content | aap-26-integracoes |
-| Managing containers in private automation hub | aap-26-integracoes |
-| Configuring automation execution (advanced) | aap-26-integracoes |
-| Using automation execution (Controller) | aap-26-controller-uso |
-| Automation execution API overview | aap-26-controller-uso |
-| Ansible Automation Platform migration | aap-26-analytics-migracao |
-| Using automation analytics | aap-26-analytics-migracao |
-| Using automation dashboard | aap-26-dashboard |
-| Using content navigator (ansible-navigator) | aap-26-dev-tools |
-| Ansible Lightspeed User Guide | aap-26-dev-tools |
-| Ansible Lightspeed Release Notes | aap-26-dev-tools |
-| Deploy the automation intelligent assistant (MCP) | aap-26-dev-tools |
-| Installing self-service automation portal | aap-26-self-service |
-| Configuring self-service automation portal | aap-26-self-service |
-| Using self-service automation portal | aap-26-self-service |
-| Installing Ansible plug-ins for Red Hat Developer Hub | aap-26-developer-hub |
-| Using Ansible plug-ins for Red Hat Developer Hub | aap-26-developer-hub |
-
----
-
-## Contribuindo
-
-Pull requests são bem-vindos para corrigir imprecisões ou adicionar conteúdo de novos guias do AAP 2.6.
+| `aap-plan-2-7-pdf.pdf` | aap-27-instalacao |
+| `aap-install-2-7-pdf.pdf` | aap-27-instalacao |
+| `aap-secure-2-7-pdf.pdf` | aap-27-seguranca |
+| `aap-administer-2-7-pdf.pdf` | aap-27-seguranca |
+| `aap-develop-2-7-pdf.pdf` | aap-27-desenvolvimento |
+| `aap-get-started-2-7-pdf.pdf` | aap-27-desenvolvimento |
+| `aap-extend-2-7-pdf.pdf` | aap-27-extensao |
+| `aap-integrate-2-7-pdf.pdf` | aap-27-extensao |
+| `aap-optimize-2-7-pdf.pdf` | aap-27-operacao |
+| `aap-observe-2-7-pdf.pdf` | aap-27-operacao |
+| `aap-troubleshoot-2-7-pdf.pdf` | aap-27-operacao |
+| `aap-upgrade-2-7-pdf.pdf` | aap-27-upgrade |
+| `aap-migrate-2-7-pdf.pdf` | aap-27-upgrade |
+| `aap-reference-2-7-pdf.pdf` | aap-27-upgrade |
+| `aap-whats-new-2-7-pdf.pdf` | aap-27-upgrade |
+| `aap-discover-2-7-pdf.pdf` | aap-27-upgrade |
 
 ---
 
 ## Créditos
 
-A estrutura de skills adotada neste repositório — formato `SKILL.md`, divisão em capítulos, glossário, cheatsheet e patterns — foi inspirada no projeto **[book-to-skill](https://github.com/virgiliojr94/book-to-skill)**, criado por [@virgiliojr94](https://github.com/virgiliojr94).
+Skills geradas com o processo [book-to-skill](https://github.com/virgiliojr94/book-to-skill) — ferramenta para conversão de documentação técnica (PDFs) em skills estruturadas para agentes de IA.
 
-O `book-to-skill` é uma ferramenta que converte documentos técnicos (PDFs, EPUBs, DOCX) em skills estruturados para agentes de IA como Cursor, GitHub Copilot CLI, Amp e Claude Code. Foi ele que tornou possível transformar os ~38 guias oficiais da Red Hat em conteúdo consumível diretamente pelo agente de IA, sem precisar abrir um único PDF.
-
-> Se você quiser criar skills a partir de outras documentações, comece por lá.
+Documentação fonte: [Red Hat Ansible Automation Platform 2.7](https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.7) e [AAP 2.6](https://docs.redhat.com/en/documentation/red_hat_ansible_automation_platform/2.6).
