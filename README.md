@@ -12,7 +12,7 @@ Skills são arquivos `SKILL.md` que ensinam o agente de IA do Cursor a responder
 
 ## Skills disponíveis — AAP 2.7 (branch `v2.7`)
 
-> **AAP 2.7 — 16 PDFs oficiais → 6 skills**
+> **AAP 2.7 — 16 PDFs oficiais → 8 skills** *(administer.pdf e develop.pdf são grandes o suficiente para skills dedicadas)*
 
 | Skill | Conteúdo | Fonte |
 |---|---|---|
@@ -22,6 +22,8 @@ Skills são arquivos `SKILL.md` que ensinam o agente de IA do Cursor a responder
 | `aap-27-extensao` | **Ansible MCP Server standalone** (novo 2.7, porta 8448), Intelligent Assistant + BYOK (RAG customizado), Lightspeed Coding, Terraform/Vault | extend + integrate |
 | `aap-27-operacao` | Performance tuning (capacity algorithm, forks, EDA scaling), OCP pod resources, metrics-utility, Automation Dashboard, troubleshooting | optimize + observe + troubleshoot |
 | `aap-27-upgrade` | **Breaking changes 2.7** (RPM removido, auth direta removida), checklist pré-upgrade, detecção de acesso direto, upgrade containerizado/OCP, migração auth/CaC/APIs | upgrade + migrate + reference + whats-new |
+| `aap-27-controller-uso` | **Job Templates** (todos os campos, surveys, job slicing, extra_vars, webhooks SCM), **Workflows** (visualizer, convergência, approval nodes, artifacts), **Projects** (SCM, branch override, git refspec), **Inventários dinâmicos** (VMware vCenter/ESXi, AWS EC2, Azure, Satellite, Terraform State, OpenShift Virtualization, GCE), **Notificações** (Slack, email, webhook, PagerDuty) | administer + develop |
+| `aap-27-mesh-backup` | **Automation Mesh** (hybrid/control/execution/hop, topologias de design, single-hop, multi-hop, outbound-only), adição de nós em OCP via UI, Mesh Ingress (sem inbound), topology viewer, CA customizada, **Backup/Restore** (containerizado: backup.yml/restore.yml; OCP: AnsibleAutomationPlatformBackup CR; metrics service) | administer |
 
 **Breaking changes obrigatórios documentados no 2.7:**
 - Instalador RPM **removido** — apenas Container (RHEL+Podman) e Operator (OCP)
@@ -96,6 +98,18 @@ Após copiar as skills para `~/.cursor/skills/`, elas ficam disponíveis automat
 
 "Como criar um EE com MCP server do GitHub?"
 → usa aap-27-desenvolvimento
+
+"Como criar um Job Template com survey e job slicing no AAP 2.7?"
+→ usa aap-27-controller-uso
+
+"Como adicionar execution nodes remotos via hop node no AAP 2.7?"
+→ usa aap-27-mesh-backup
+
+"Como fazer backup antes do upgrade no ambiente containerizado?"
+→ usa aap-27-mesh-backup
+
+"Como criar inventário dinâmico do VMware vCenter ou Terraform State?"
+→ usa aap-27-controller-uso
 ```
 
 ---
@@ -120,8 +134,8 @@ O AAP 2.7 introduz o **Ansible MCP Server** como componente standalone (Tech Pre
 | `aap-plan-2-7-pdf.pdf` | aap-27-instalacao |
 | `aap-install-2-7-pdf.pdf` | aap-27-instalacao |
 | `aap-secure-2-7-pdf.pdf` | aap-27-seguranca |
-| `aap-administer-2-7-pdf.pdf` | aap-27-seguranca |
-| `aap-develop-2-7-pdf.pdf` | aap-27-desenvolvimento |
+| `aap-administer-2-7-pdf.pdf` | aap-27-seguranca + **aap-27-controller-uso** + **aap-27-mesh-backup** |
+| `aap-develop-2-7-pdf.pdf` | aap-27-desenvolvimento + **aap-27-controller-uso** |
 | `aap-get-started-2-7-pdf.pdf` | aap-27-desenvolvimento |
 | `aap-extend-2-7-pdf.pdf` | aap-27-extensao |
 | `aap-integrate-2-7-pdf.pdf` | aap-27-extensao |
@@ -133,6 +147,8 @@ O AAP 2.7 introduz o **Ansible MCP Server** como componente standalone (Tech Pre
 | `aap-reference-2-7-pdf.pdf` | aap-27-upgrade |
 | `aap-whats-new-2-7-pdf.pdf` | aap-27-upgrade |
 | `aap-discover-2-7-pdf.pdf` | aap-27-upgrade |
+
+> O `aap-administer-2-7-pdf.pdf` (13MB, ~12.000 linhas) e `aap-develop-2-7-pdf.pdf` (23MB, ~20.000 linhas) contêm conteúdo suficiente para mais de uma skill — daí a separação em `aap-27-controller-uso` e `aap-27-mesh-backup`.
 
 ---
 
