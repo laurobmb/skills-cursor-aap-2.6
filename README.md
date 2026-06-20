@@ -60,11 +60,11 @@ Skills são arquivos `SKILL.md` que ensinam o agente de IA do Cursor a responder
 
 ```bash
 # AAP 2.7
-git clone -b v2.7 git@github.com:laurobmb/skills-cursor-aap-2.6.git /tmp/aap27-skills
+git clone -b v2.7 git@github.com:laurobmb/aap-skill-documentation.git /tmp/aap27-skills
 cp -r /tmp/aap27-skills/aap-27-* ~/.cursor/skills/
 
 # AAP 2.6
-git clone -b v2.6 git@github.com:laurobmb/skills-cursor-aap-2.6.git /tmp/aap26-skills
+git clone -b v2.6 git@github.com:laurobmb/aap-skill-documentation.git /tmp/aap26-skills
 cp -r /tmp/aap26-skills/aap-26-* ~/.cursor/skills/
 ```
 
